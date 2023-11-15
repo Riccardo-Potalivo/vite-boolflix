@@ -2,7 +2,10 @@
     <div class="col-3 card">
         <p>{{ title }}</p>
         <p>{{ originalTitle }}</p>
-        <p>{{ originalLanguage }}</p>
+        <img :src="`/public/image/${originalLanguage}.png`">
+            <!-- :alt="originalLanguage" 
+            v-if="isLoaded" @load="onImgLoad"> -->
+        <!-- <p>{{ originalLanguage }}</p> -->
         <p>{{ vote }}</p>
     </div>
 </template>
@@ -17,10 +20,26 @@
             originalTitle: String,
             originalLanguage: String,
             vote: Number
+        },
+        data () {
+            return {
+                isLoaded: false
+            }
+        },
+        
+        methods: {
+            onImgLoad () {
+                this.isLoaded = true
+            }
         }
+ 
     }
 </script>
 
 <style lang="scss" scoped>
+
+img {
+    width: 3rem;
+}
 
 </style>

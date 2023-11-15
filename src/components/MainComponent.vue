@@ -26,7 +26,9 @@
             return {
                 store
             }
-        }
+        },
+
+        
     }
 </script>
 
