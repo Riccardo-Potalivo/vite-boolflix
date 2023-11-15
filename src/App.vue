@@ -6,10 +6,34 @@
 </template>
 
 <script>
-  import NavbarComponent from './components/NavbarComponent.vue'
+  import { store } from './data/store.js';
+  import axios from 'axios';
+  import NavbarComponent from './components/NavbarComponent.vue';
+
   export default {
+    name: 'App',
+
     components: {
       NavbarComponent
+    },
+
+    data() {
+      return {
+        store
+      }
+    },
+
+    methods: {
+      getMovies() {
+        axios.get(this.store.apiUrl, {params: this.store.params}).then((res) => {
+          console.log(res.data)
+        })
+      }
+    },
+
+    created() {
+      this.getMovies()
+
     }
     
   }
