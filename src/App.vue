@@ -2,6 +2,7 @@
   <header>
     <NavbarComponent/>
   </header>
+  <MainComponent/>
 
 </template>
 
@@ -9,12 +10,14 @@
   import { store } from './data/store.js';
   import axios from 'axios';
   import NavbarComponent from './components/NavbarComponent.vue';
+  import MainComponent from './components/MainComponent.vue';
 
   export default {
     name: 'App',
 
     components: {
-      NavbarComponent
+      NavbarComponent,
+      MainComponent
     },
 
     data() {
@@ -26,7 +29,10 @@
     methods: {
       getMovies() {
         axios.get(this.store.apiUrl, {params: this.store.params}).then((res) => {
-          console.log(res.data)
+          console.log(res.data);
+          store.movieList = res.data
+          console.log(store.movieList);
+
         })
       }
     },
