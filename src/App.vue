@@ -28,19 +28,30 @@
 
     methods: {
       getMovies() {
-        axios.get(this.store.apiUrl, {params: this.store.params}).then((res) => {
+        axios.get(this.store.apiUrl + this.store.endPoint.movies, {params: this.store.params}).then((res) => {
           console.log(res.data);
-          store.movieList = res.data
-          console.log(store.movieList);
+          store.moviesList = res.data
+          console.log(store.moviesList);
 
         })
-      }
+      },
+
+      getSeries() {
+        axios.get(this.store.apiUrl + this.store.endPoint.series, {params: this.store.params}).then((res) => {
+          console.log(res.data);
+          store.seriesList = res.data
+          console.log(store.seriesList);
+
+        })
+      },
     },
 
     created() {
-      this.getMovies()
+      this.getMovies();
+      this.getSeries();
 
-    }
+    },
+
     
   }
 </script>

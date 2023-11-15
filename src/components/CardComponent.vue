@@ -1,12 +1,14 @@
 <template>
-    <div class="col-3 card">
-        <p>{{ title }}</p>
-        <p>{{ originalTitle }}</p>
-        <img :src="`/public/image/${originalLanguage}.png`">
-            <!-- :alt="originalLanguage" 
-            v-if="isLoaded" @load="onImgLoad"> -->
-        <!-- <p>{{ originalLanguage }}</p> -->
-        <p>{{ vote }}</p>
+    <div class="col-3 g-3">
+        <div class="card p-3 text-center ">
+            <p>{{ title }}</p>
+            <p>{{ originalTitle }}</p>
+            <img :src="`/public/image/${originalLanguage}.png`">
+                <!-- :alt="originalLanguage"
+                v-if="isLoaded" @load="onImgLoad"> -->
+            <!-- <p>{{ originalLanguage }}</p> -->
+            <p>{{ vote.toFixed(0) }}</p>
+        </div>
     </div>
 </template>
 
