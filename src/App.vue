@@ -1,6 +1,6 @@
 <template>
   <header>
-    <NavbarComponent/>
+    <NavbarComponent @filter-change="setValue"/>
   </header>
   <MainComponent/>
 
@@ -27,6 +27,15 @@
     },
 
     methods: {
+
+      setValue(search) {
+        console.log(search)
+        this.store.params.query = search;
+
+        this.getMovies();
+        this.getSeries();
+      },
+
       getMovies() {
         axios.get(this.store.apiUrl + this.store.endPoint.movies, {params: this.store.params}).then((res) => {
           console.log(res.data);
