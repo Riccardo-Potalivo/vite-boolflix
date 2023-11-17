@@ -8,21 +8,29 @@
                     :alt="originalTitle">
             </div>
             <div class="box-back">
-                <p>{{ title }}</p>
-                <p>{{ originalTitle }}</p>
+                <p>
+                    <strong>Titolo:</strong>
+                     {{ title }}
+                </p>
+                <p>
+                    <strong>Titolo originale:</strong>
+                    {{ originalTitle }}
+                </p>
+
                 <img
-                    class="img_flag"
                     :src="getFlag"
                     @error="languageNotFound()"
                     :alt="originalTitle">
-                <p>{{ getVote }} </p>
+
                 <div>
                     <i
                         v-for="star in 5"
                         :key="star"
-                        class="fa-star"
+                        class="fa-star p-1"
                         :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
                 </div>
+
+                <p class="mt-3">{{ overview }}</p>
         
             </div>
         </div>
@@ -39,7 +47,9 @@
             originalTitle: String,
             originalLanguage: String,
             vote: Number,
-            posterPath: String
+            posterPath: String,
+            overview: String
+
         },
 
         data() { 
@@ -114,10 +124,16 @@
 }
 .box-front,
 .box-back {
+  padding: 2rem;
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+    
+    img {
+        width: 3rem;
+        margin-bottom: 0.5rem;
+    }
 }
 .box-front {
   background-color: #cccccc;
@@ -131,9 +147,6 @@
   background-color: #55555580;
   color: #eeeeee;
   transform: rotateY(180deg);
-}
-.img_flag {
-    width: 3rem;
 }
 
 </style>

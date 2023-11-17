@@ -10,7 +10,8 @@
                 :originalTitle="movie.original_title"
                 :originalLanguage="movie.original_language"
                 :vote="movie.vote_average"
-                :posterPath="movie.poster_path"/>
+                :posterPath="movie.poster_path"
+                :overview="movie.overview"/>
         </div>
 
         <h3>Series</h3>
@@ -22,7 +23,8 @@
                 :originalTitle="series.original_name"
                 :originalLanguage="series.original_language"
                 :vote="series.vote_average"
-                :posterPath="series.poster_path"/>
+                :posterPath="series.poster_path"
+                :overview="series.overview"/>
         </div>
 
     </div>
