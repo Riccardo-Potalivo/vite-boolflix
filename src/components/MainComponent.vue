@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 
-        <h3 class="my-3">Movies</h3>
+        <h3>Movies</h3>
         <div class="row">
             <CardComponent 
                 v-for="(movie, index) in store.moviesList.results" 
@@ -13,7 +13,7 @@
                 :posterPath="movie.poster_path"/>
         </div>
 
-        <h3 class="my-3">Series</h3>
+        <h3>Series</h3>
         <div class="row">
             <CardComponent 
                 v-for="(series, index) in store.seriesList.results" 
@@ -49,5 +49,9 @@
 </script>
 
 <style lang="scss" scoped>
+h3 {
+    color: white;
+    padding: 1rem 0;
+}
 
 </style>

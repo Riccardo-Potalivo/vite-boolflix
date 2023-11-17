@@ -2,7 +2,9 @@
   <header>
     <NavbarComponent @filter-change="setValue"/>
   </header>
-  <MainComponent/>
+  <main>
+    <MainComponent/>
+  </main>
 
 </template>
 
@@ -65,7 +67,8 @@
 <style lang="scss" scoped>
 @use './assets/styles/partials/variables' as *;
 
-header {
+header,
+main {
   background-color: $BgDark;
 }
 

@@ -1,28 +1,30 @@
 <template>
-    <div class="col-3 g-3">
-        <div class="card p-3 text-center ">
-            <p>{{ title }}</p>
-            <p>{{ originalTitle }}</p>
-
-            <img 
-                class="img_flag"
-                :src="getFlag"
-                @error="languageNotFound()"
-                :alt="originalTitle">
-
-            <p>{{ getVote }} </p>
-            <div>
-                <i 
-                    v-for="star in 5" 
-                    :key="star" 
-                    class="fa-star"
-                    :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img
+                    :src="getPost"
+                    @error="posterNotFound()"
+                    :alt="originalTitle">
             </div>
-            
-            <img 
-                :src="getPost" 
-                @error="posterNotFound()" 
-                :alt="originalTitle">
+            <div class="box-back">
+                <p>{{ title }}</p>
+                <p>{{ originalTitle }}</p>
+                <img
+                    class="img_flag"
+                    :src="getFlag"
+                    @error="languageNotFound()"
+                    :alt="originalTitle">
+                <p>{{ getVote }} </p>
+                <div>
+                    <i
+                        v-for="star in 5"
+                        :key="star"
+                        class="fa-star"
+                        :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
+                </div>
+        
+            </div>
         </div>
     </div>
 </template>
@@ -63,7 +65,7 @@
             },
 
             getPost() {
-                return 'http://image.tmdb.org/t/p/w500/' + this.posterPath
+                return 'http://image.tmdb.org/t/p/w342/' + this.posterPath
             }, 
 
             getFlag() {
@@ -92,7 +94,44 @@
 </script>
 
 <style lang="scss" scoped>
-
+.box {
+  background-color: transparent;
+  width: 432px;
+  height: 613px;
+//   border: 1px solid #eeeeee;
+  perspective: 1000px;
+}
+.box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+.box:hover .box-inner {
+  transform: rotateY(180deg);
+}
+.box-front,
+.box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.box-front {
+  background-color: #cccccc;
+  color: #111111;
+  
+    img {
+        width: 100%;
+    }
+}
+.box-back {
+  background-color: #55555580;
+  color: #eeeeee;
+  transform: rotateY(180deg);
+}
 .img_flag {
     width: 3rem;
 }
