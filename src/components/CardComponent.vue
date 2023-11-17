@@ -4,7 +4,6 @@
             <div class="box-front">
                 <img
                     :src="getPost"
-                    @error="posterNotFound()"
                     :alt="originalTitle">
             </div>
             <div class="box-back">
@@ -18,7 +17,7 @@
                 </p>
 
                 <img
-                    :src="getFlag"
+                    :src="(imgError) ? 'https://flagsapi.com/IT/flat/64.png' : getFlag"
                     @error="languageNotFound()"
                     :alt="originalTitle">
 
@@ -54,27 +53,27 @@
 
         data() { 
             return {
-                currentFlag: '',
+                imgError: false
                 
             }
         },
-    
+        
         methods: {
             languageNotFound() {
-                this.language = 'GB';
-            },
-
-            posterNotFound() {
-                this.poster = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
-            },
+                this.imgError = true;
+            }
+            
         },
-
+        
         computed: {
             getVote() {
                 return Math.ceil(this.vote / 2)
             },
 
             getPost() {
+                if(this.posterPath === null) {
+                    return 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'
+                }
                 return 'http://image.tmdb.org/t/p/w342/' + this.posterPath
             }, 
 
@@ -124,11 +123,10 @@
 }
 .box-front,
 .box-back {
-  padding: 2rem;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     
     img {
         width: 3rem;
@@ -136,14 +134,15 @@
     }
 }
 .box-front {
-  background-color: #cccccc;
-  color: #111111;
-  
+    background-color: #cccccc;
+    color: #111111;
+    
     img {
         width: 100%;
     }
 }
 .box-back {
+  padding: 2rem;
   background-color: #55555580;
   color: #eeeeee;
   transform: rotateY(180deg);
