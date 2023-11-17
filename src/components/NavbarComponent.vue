@@ -25,10 +25,8 @@
 
         methods: {
             filterName() {
-                // console.log(this.searchValue)
-                this.$emit('filterChange', this.searchValue)
-
-            
+                store.params.query = this.searchValue;
+                this.$emit('filterChange')            
             }
         },
 

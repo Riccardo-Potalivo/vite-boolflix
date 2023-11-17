@@ -3,10 +3,11 @@
         <div class="card p-3 text-center ">
             <p>{{ title }}</p>
             <p>{{ originalTitle }}</p>
-            <img :src="`/public/image/${originalLanguage}.png`">
-                <!-- :alt="originalLanguage"
-                v-if="isLoaded" @load="onImgLoad"> -->
-            <!-- <p>{{ originalLanguage }}</p> -->
+
+            <img :src="currentFlag"
+                 @error="toDefSrc()"
+                 :alt="originalTitle">
+                 
             <p>{{ vote.toFixed(0) }}</p>
         </div>
     </div>
@@ -23,19 +24,21 @@
             originalLanguage: String,
             vote: Number
         },
-        data () {
+
+        data() {
             return {
-                isLoaded: false
+                currentFlag: 'https://flagsapi.com/' + this.originalLanguage.toUpperCase() + '/flat/64.png'
             }
         },
-        
+    
         methods: {
-            onImgLoad () {
-                this.isLoaded = true
+        toDefSrc() {
+                this.currentFlag = 'https://flagsapi.com/' + 'GB' + '/flat/64.png';
             }
-        }
- 
+        },
+
     }
+
 </script>
 
 <style lang="scss" scoped>

@@ -28,10 +28,7 @@
 
     methods: {
 
-      setValue(search) {
-        console.log(search)
-        this.store.params.query = search;
-
+      setValue() {
         this.getMovies();
         this.getSeries();
       },
