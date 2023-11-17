@@ -10,7 +10,14 @@
                 @error="languageNotFound()"
                 :alt="originalTitle">
 
-            <p>{{ vote.toFixed(0) }}</p>
+            <p>{{ getVote }} </p>
+            <div>
+                <i 
+                    v-for="star in 5" 
+                    :key="star" 
+                    class="fa-star"
+                    :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
+            </div>
             
             <img 
                 :src="getPost" 
@@ -51,6 +58,9 @@
         },
 
         computed: {
+            getVote() {
+                return Math.ceil(this.vote / 2)
+            },
 
             getPost() {
                 return 'http://image.tmdb.org/t/p/w500/' + this.posterPath
@@ -72,7 +82,6 @@
                     language = 'IN'
                     break
                 }
-                console.log(language)
 
                 return 'https://flagsapi.com/' + language + '/flat/64.png'
             }
