@@ -4,32 +4,36 @@
             <div class="box-front">
                 <img
                     :src="getPost"
-                    :alt="originalTitle">
+                    :alt="originalTitle"
+                >
             </div>
             <div class="box-back">
-                <p>
-                    <strong>Titolo:</strong>
-                     {{ title }}
-                </p>
-                <p>
-                    <strong>Titolo originale:</strong>
-                    {{ originalTitle }}
-                </p>
-
-                <img
-                    :src="(imgError) ? 'https://flagsapi.com/IT/flat/64.png' : getFlag"
-                    @error="languageNotFound()"
-                    :alt="originalTitle">
-
                 <div>
-                    <i
-                        v-for="star in 5"
-                        :key="star"
-                        class="fa-star p-1"
-                        :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
+                    <p>
+                        <strong>Titolo:</strong>
+                         {{ title }}
+                    </p>
+                    <p>
+                        <strong>Titolo originale:</strong>
+                        {{ originalTitle }}
+                    </p>
+                    <img
+                        :src="(imgError) ? 'https://flagsapi.com/IT/flat/64.png' : getFlag"
+                        @error="languageNotFound()"
+                        :alt="originalTitle"
+                    >
+                    <div>
+                        <i
+                            v-for="star in 5"
+                            :key="star"
+                            class="fa-star p-1"
+                            :class="(star <= getVote) ? 'fa-solid' : 'fa-regular'"></i>
+                    </div>
                 </div>
 
-                <p class="mt-3">{{ overview }}</p>
+                <div class="overview_poster">
+                    <p class="mt-3">{{ overview }}</p>
+                </div>
         
             </div>
         </div>
@@ -39,7 +43,7 @@
 <script>
 
     export default {
-        name: 'CardComponent',
+        name: 'CardSearch',
 
         props: {
             title: String,
@@ -146,6 +150,13 @@
   background-color: #55555580;
   color: #eeeeee;
   transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.overview_poster {
+    height: 100%;
+    overflow-y: auto;
 }
 
 </style>

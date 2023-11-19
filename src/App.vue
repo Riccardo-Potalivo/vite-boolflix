@@ -33,10 +33,11 @@
       setValue() {
         this.getMovies();
         this.getSeries();
+        this.getSeriesPopular();
       },
 
       getMovies() {
-        axios.get(this.store.apiUrl + this.store.endPoint.movies, {params: this.store.params}).then((res) => {
+        axios.get(this.store.apiUrl + this.store.endPoint.moviesSearch, {params: this.store.params}).then((res) => {
           // console.log(res.data);
           store.moviesList = res.data
           console.log(store.moviesList.results);
@@ -45,10 +46,19 @@
       },
 
       getSeries() {
-        axios.get(this.store.apiUrl + this.store.endPoint.series, {params: this.store.params}).then((res) => {
+        axios.get(this.store.apiUrl + this.store.endPoint.seriesSearch, {params: this.store.params}).then((res) => {
           // console.log(res.data);
           store.seriesList = res.data
           console.log(store.seriesList.results);
+
+        })
+      },
+
+      getSeriesPopular() {
+        axios.get(this.store.apiUrl + this.store.endPoint.seriesPopular, {params: this.store.params}).then((res) => {
+          // console.log(res.data);
+          store.seriesListPopular = res.data
+          console.log(store.seriesListPopular.results);
 
         })
       },
@@ -57,6 +67,7 @@
     created() {
       this.getMovies();
       this.getSeries();
+      this.getSeriesPopular();
 
     },
 
